@@ -22,7 +22,7 @@ do
     validInput = InputValidator.IsInputValid(input, out ingredientID);
 
     //Add if ID is in valid range
-    if (InputValidator.IsIngredientIdValid(ingredientID, ingredients.Count)) selector.Select(ingredients[ingredientID - 1]); //Must convert to index 0
+    if (validInput && InputValidator.IsIngredientIdValid(ingredientID, ingredients.Count)) selector.Select(ingredients[ingredientID - 1]); //Must convert to index 0
 
 } while (validInput);
 
