@@ -6,7 +6,7 @@ Console.WriteLine("Create a new cookie Recipe! Available Ingredients are: ");
 
 //Print ingredients
 List<Ingredient> ingredients = IngredientListGenerator.Generate();
-IngredientPrinter.Print(ingredients);
+Printer.PrintIngredients(ingredients);
 
 //Allow user to select ingredients
 bool validInput;
@@ -21,10 +21,15 @@ do
     //Checks if input is number
     validInput = InputValidator.IsInputValid(input, out ingredientID);
 
-    //Add if ID is in valid range
+    //Add if ID is in valid range, skip if user entered a string
     if (validInput && InputValidator.IsIngredientIdValid(ingredientID, ingredients.Count)) selector.Select(ingredients[ingredientID - 1]); //Must convert to index 0
 
 } while (validInput);
+
+//Save the new recipe
+Recipe recipe = new Recipe(selector.Ingredients);
+
+//Print the new recipe
 
 Console.WriteLine("Press any key to exit.");
 Console.ReadKey();

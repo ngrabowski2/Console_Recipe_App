@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace RecipeApp.IO
 {
-    public static class IngredientPrinter
+    public static class Printer
     {
-        public static void Print(List<Ingredient> ingredients)
+        public static void PrintIngredients(List<Ingredient> ingredients)
         {
             foreach (Ingredient ingredient in ingredients) Console.WriteLine($"{ingredient.ID}. {ingredient.Name}");
+        }
+        public static void PrintRecipe(Recipe recipe)
+        {
+
         }
     }
 }
