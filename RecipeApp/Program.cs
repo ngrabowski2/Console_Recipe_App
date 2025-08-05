@@ -17,14 +17,13 @@ do
     //User input
     string input = Console.ReadLine();
     int ingredientID;
-    validInput = int.TryParse(input, out ingredientID);
 
-    //Add if valid
-    if (validInput && ingredientID > 0 && ingredientID <= ingredients.Count)
-    {
-        //Must convert to index 0
-        selector.Select(ingredients[ingredientID-1]);
-    }
+    //Checks if input is number
+    validInput = InputValidator.IsInputValid(input, out ingredientID);
+
+    //Add if ID is in valid range
+    if (InputValidator.IsIngredientIdValid(ingredientID, ingredients.Count)) selector.Select(ingredients[ingredientID - 1]); //Must convert to index 0
+
 } while (validInput);
 
 Console.WriteLine("Press any key to exit.");
