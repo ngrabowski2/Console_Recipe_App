@@ -14,7 +14,12 @@ namespace RecipeApp.IO
         }
         public static void PrintRecipe(Recipe recipe)
         {
+            Console.WriteLine("Printing Single Recipe");
 
+            foreach (Ingredient ingredient in recipe.RawIngredients)
+            {
+                Console.WriteLine($"{ingredient.Name}. {ingredient.Instructions}");
+            }
         }
     }
 }

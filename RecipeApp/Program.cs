@@ -30,6 +30,7 @@ do
 Recipe recipe = new Recipe(selector.Ingredients);
 
 //Print the new recipe
+Printer.PrintRecipe(recipe);
 
 Console.WriteLine("Press any key to exit.");
 Console.ReadKey();
