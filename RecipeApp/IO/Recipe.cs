@@ -19,5 +19,15 @@ namespace RecipeApp.IO
                 IngredientIDs.Add(ingredient.ID);
             }
         }
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(int id in IngredientIDs)
+            {
+                sb.Append(id.ToString() + ",");
+            }
+            sb.Length--;
+            return sb.ToString();
+        }
     }
 }

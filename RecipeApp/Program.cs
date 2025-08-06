@@ -1,5 +1,9 @@
 ﻿using RecipeApp;
 using RecipeApp.IO;
+using static RecipeApp.IO.FileFormats;
+//File to store or check recipes
+const string FileName = "recipes";
+const FileTypes FileFormat = FileTypes.Txt;
 
 //Main Application flow
 Console.WriteLine("Create a new cookie Recipe! Available Ingredients are: ");
@@ -26,11 +30,22 @@ do
 
 } while (validInput);
 
-//Save the new recipe
-Recipe recipe = new Recipe(selector.Ingredients);
+//Check if user selected ingredients
+if (selector.Ingredients.Count > 0)
+{
+    //Save the new recipe
+    Recipe recipe = new Recipe(selector.Ingredients);
 
-//Print the new recipe
-Printer.PrintRecipe(recipe);
+    //Print the new recipe
+    Printer.PrintRecipe(recipe);
 
-Console.WriteLine("Press any key to exit.");
+    //Save the recipe
+    RecipeSaver.SaveRecipe(recipe, FileName);
+} else
+//No ingredients selected
+{
+    Console.WriteLine("No ingredients have been selected. Recipe will not be saved.");
+}
+
+    Console.WriteLine("Press any key to exit.");
 Console.ReadKey();
