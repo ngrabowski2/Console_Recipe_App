@@ -31,7 +31,7 @@ do
 } while (validInput);
 
 //Save recipe
-RecipeSaver.SaveRecipe(selector, FileName);
+RecipeSaver.SaveRecipe(selector, FileName, FileFormat);
 
     Console.WriteLine("Press any key to exit.");
 Console.ReadKey();

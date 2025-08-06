@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static RecipeApp.IO.FileFormats;
 
 namespace RecipeApp.IO
 {
     public static class RecipeSaver
     {
-        public static void SaveRecipe(Recipe recipe, String file)
+        public static void SaveRecipeTxt(Recipe recipe, String file)
         {
             if (File.Exists(file))
             {
@@ -21,7 +22,7 @@ namespace RecipeApp.IO
             }
         }
 
-        public static void SaveRecipe(IngredientSelector selector, string FileName)
+        public static void SaveRecipe(IngredientSelector selector, string FileName, FileTypes fileType)
         {
             //Check if user selected ingredients
             if (selector.Ingredients.Count > 0)
@@ -33,7 +34,7 @@ namespace RecipeApp.IO
                 Printer.PrintRecipe(recipe);
 
                 //Save the recipe
-                RecipeSaver.SaveRecipe(recipe, FileName);
+                if(fileType is FileTypes.Txt) RecipeSaver.SaveRecipeTxt(recipe, FileName);
             }
             else
             //No ingredients selected
