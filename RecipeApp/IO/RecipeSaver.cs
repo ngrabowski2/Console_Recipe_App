@@ -9,7 +9,7 @@ namespace RecipeApp.IO
 {
     public static class RecipeSaver
     {
-        public static void SaveRecipeTxt(Recipe recipe, String file)
+        private static void SaveRecipeTxt(Recipe recipe, String file)
         {
             if (File.Exists(file))
             {
@@ -20,6 +20,11 @@ namespace RecipeApp.IO
             {
                 File.WriteAllText(file, recipe.ToString());
             }
+        }
+        private static void SaveRecipeJson(Recipe recipe, String file)
+        {
+
+            //JSON SERIALIZER
         }
 
         public static void SaveRecipe(IngredientSelector selector, string FileName, FileTypes fileType)
@@ -34,7 +39,7 @@ namespace RecipeApp.IO
                 Printer.PrintRecipe(recipe);
 
                 //Save the recipe
-                if(fileType is FileTypes.Txt) RecipeSaver.SaveRecipeTxt(recipe, FileName);
+                if(fileType is FileTypes.Txt) SaveRecipeTxt(recipe, FileName);
             }
             else
             //No ingredients selected
