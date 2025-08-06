@@ -20,5 +20,26 @@ namespace RecipeApp.IO
                 File.WriteAllText(file, recipe.ToString());
             }
         }
+
+        public static void SaveRecipe(IngredientSelector selector, string FileName)
+        {
+            //Check if user selected ingredients
+            if (selector.Ingredients.Count > 0)
+            {
+                //Save the new recipe
+                Recipe recipe = new Recipe(selector.Ingredients);
+
+                //Print the new recipe
+                Printer.PrintRecipe(recipe);
+
+                //Save the recipe
+                RecipeSaver.SaveRecipe(recipe, FileName);
+            }
+            else
+            //No ingredients selected
+            {
+                Console.WriteLine("No ingredients have been selected. Recipe will not be saved.");
+            }
+        }
     }
 }
