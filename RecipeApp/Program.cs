@@ -2,8 +2,8 @@
 using RecipeApp.IO;
 using static RecipeApp.IO.FileFormats;
 //File to store or check recipes
-const string FileName = "recipes";
-const FileTypes FileFormat = FileTypes.Txt;
+const string FileName = "recipes.json";
+const FileTypes FileFormat = FileTypes.Json;
 
 //Main Application flow
 Console.WriteLine("Create a new cookie Recipe! Available Ingredients are: ");

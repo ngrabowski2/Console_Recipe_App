@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using static RecipeApp.IO.FileFormats;
 
@@ -23,8 +24,35 @@ namespace RecipeApp.IO
         }
         private static void SaveRecipeJson(Recipe recipe, String file)
         {
+            List<string> recipes;
+           
+            //If file exists
+            if (File.Exists(file))
+            {
+                //If text already exists, add recipe to end
+                if (new FileInfo(file).Length > 0)
+                {
+                    recipes = JsonSerializer.Deserialize<List<string>>(File.ReadAllText(file));
+                    recipes.Add(recipe.ToString());
 
-            //JSON SERIALIZER
+
+                } else
+                {
+                    //If no text exists, just add the new recipe to the file
+                    recipes = new List<string>();
+                    recipes.Add(recipe.ToString());
+                }
+
+
+                    File.WriteAllText(file, JsonSerializer.Serialize(recipes));
+            }
+            else
+            {
+                //If no file exists, create new list and store new recipe
+                recipes = new List<string>();
+                recipes.Add(recipe.ToString());
+                File.WriteAllText(file, JsonSerializer.Serialize(recipes));
+            }
         }
 
         public static void SaveRecipe(IngredientSelector selector, string FileName, FileTypes fileType)
@@ -40,6 +68,7 @@ namespace RecipeApp.IO
 
                 //Save the recipe
                 if(fileType is FileTypes.Txt) SaveRecipeTxt(recipe, FileName);
+                if(fileType is FileTypes.Json) SaveRecipeJson(recipe, FileName);
             }
             else
             //No ingredients selected
