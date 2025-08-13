@@ -64,6 +64,7 @@ namespace RecipeApp.IO
                 Recipe recipe = new Recipe(selector.Ingredients);
 
                 //Print the new recipe
+                Console.WriteLine("Printing Single Recipe");
                 Printer.PrintRecipe(recipe);
 
                 //Save the recipe

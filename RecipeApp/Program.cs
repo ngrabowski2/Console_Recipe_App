@@ -2,10 +2,13 @@
 using RecipeApp.IO;
 using static RecipeApp.IO.FileFormats;
 //File to store or check recipes
-const string FileName = "recipes.json";
-const FileTypes FileFormat = FileTypes.Json;
+const string FileName = "recipes";
+const FileTypes FileFormat = FileTypes.Txt;
 
 //Main Application flow
+//Print existing recipes
+Printer.PrintExistingRecipes(FileName, FileFormat);
+
 Console.WriteLine("Create a new cookie Recipe! Available Ingredients are: ");
 
 //Print ingredients
@@ -33,5 +36,5 @@ do
 //Save recipe
 RecipeSaver.SaveRecipe(selector, FileName, FileFormat);
 
-    Console.WriteLine("Press any key to exit.");
+Console.WriteLine("Press any key to exit.");
 Console.ReadKey();

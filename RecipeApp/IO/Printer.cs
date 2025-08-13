@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static RecipeApp.IO.FileFormats;
 
 namespace RecipeApp.IO
 {
@@ -14,12 +16,42 @@ namespace RecipeApp.IO
         }
         public static void PrintRecipe(Recipe recipe)
         {
-            Console.WriteLine("Printing Single Recipe");
-
             foreach (Ingredient ingredient in recipe.RawIngredients)
             {
                 Console.WriteLine($"{ingredient.Name}. {ingredient.Instructions}");
             }
         }
+        public static void PrintExistingRecipes(string FileName, FileTypes format)
+        {
+            //Check if file exists
+            if (File.Exists(FileName))
+            {
+                //Check if there is actually text stored
+                if (new FileInfo(FileName).Length > 0)
+                {
+                    Console.WriteLine("Existing recipes are:");
+                    //Print recipe
+                    if (format is FileTypes.Txt)
+                    {
+                        PrintRecipeFromTxt(FileName);
+                    }
+
+                }
+            }
+        }
+        private static void PrintRecipeFromTxt(string FileName)
+        {
+            int index = 1;
+            List<Recipe> recipes = RecipeLoader.LoadFromTxt(FileName);
+            foreach (Recipe recipe in recipes)
+            {
+                Console.WriteLine($"***** {index} *****");
+                PrintRecipe(recipe);
+                Console.WriteLine(" ");
+                index++;
+            }
+        }
+
+        private static void PrintRecipeFromJson() { }
     }
 }
