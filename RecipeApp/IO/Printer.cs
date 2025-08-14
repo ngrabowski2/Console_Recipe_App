@@ -31,18 +31,14 @@ namespace RecipeApp.IO
                 {
                     Console.WriteLine("Existing recipes are:");
                     //Print recipe
-                    if (format is FileTypes.Txt)
-                    {
-                        PrintRecipeFromTxt(FileName);
-                    }
-
+                    PrintRecipe(FileName, format);
                 }
             }
         }
-        private static void PrintRecipeFromTxt(string FileName)
+        private static void PrintRecipe(string FileName, FileTypes format)
         {
             int index = 1;
-            List<Recipe> recipes = RecipeLoader.LoadFromTxt(FileName);
+            List<Recipe> recipes = RecipeLoader.LoadFromFile(FileName, format);
             foreach (Recipe recipe in recipes)
             {
                 Console.WriteLine($"***** {index} *****");
@@ -51,7 +47,5 @@ namespace RecipeApp.IO
                 index++;
             }
         }
-
-        private static void PrintRecipeFromJson() { }
     }
 }
